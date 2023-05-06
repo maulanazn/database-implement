@@ -50,7 +50,6 @@ entity PodcastGenre {
     --
     * name: VARCHAR
     * image: VARCHAR
-    * icon: VARCHAR
 }
 
 entity Podcast {
@@ -60,6 +59,7 @@ entity Podcast {
     about: TEXT
     image: VARCHAR
     category_id: VARCHAR
+    --
     * user_id: VARCHAR
 }
 
@@ -95,7 +95,7 @@ Artist }|--|{ Album : Has Album
 Album ||--|{ Song : Contain Songs
 Artist }|--|{ Song : Sings the Song
 PlaylistGenre |o--o{ Playlist : Contain Songs
-User ||--|{ Playlist : Create Playlist
+User |o--|{ Playlist : Create Playlist
 Playlist }o--o{ Song : Contain Songs
 PodcastGenre |o--|{ Podcast : Contain Podcasts
 User ||--o{ Podcast : Create Podcast
