@@ -93,14 +93,14 @@ entity Concert {
 
 Artist }|--|{ Album : Has Album
 Album ||--|{ Song : Contain Songs
-Artist }|--|{ Song : Sings the Song
+Artist }o--o{ Song : Sings the Song
 PlaylistGenre |o--o{ Playlist : Contain Songs
 User |o--|{ Playlist : Create Playlist
 Playlist }o--o{ Song : Contain Songs
 PodcastGenre |o--|{ Podcast : Contain Podcasts
 User ||--o{ Podcast : Create Podcast
 Podcast ||--o{ Episode : Contain Podcasts
-Artist }|--o{ Concert : Perform on Concert
+Artist }o--o{ Concert : Perform on Concert
 User }o--o{ Artist : Follow
 User }o--o{ Song : Liked Song
 User }o--o{ Playlist : Follow

@@ -78,4 +78,8 @@ SELECT podcast_genre.name AS genre, podcast.name AS podcast FROM podcast_genre
 JOIN podcast ON (podcast.id = podcast_genre.podcast_id) WHERE podcast.id = 'P1' GROUP BY podcast_genre.id;
 
 SELECT podcast.name AS podcast, COUNT(episode.id) AS episode FROM podcast 
-JOIN episode ON (episode.podcast_id = podcast.id) WHERE episode.podcast_id = 'P2';
+JOIN episode ON (episode.podcast_id = podcast.id) WHERE episode.podcast_id = 'P1' AND podcast.user_id = 'A1';
+
+SELECT user.id AS Account, COUNT(podcast.id) AS Podcast FROM `user` 
+JOIN podcast ON (podcast.user_id = user.id)
+WHERE podcast.user_id = 'A1';
