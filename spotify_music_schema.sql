@@ -7,8 +7,6 @@ CREATE TABLE artist (
     biography TEXT NOT NULL
 );
 
-DESC artist;
-
 CREATE TABLE concert (
     id VARCHAR(100) PRIMARY KEY NOT NULL,
     location POINT NOT NULL,
@@ -18,33 +16,45 @@ CREATE TABLE concert (
     latitude POINT
 );
 
-CREATE TABLE artist_concert (
-    id_artist VARCHAR(100) NOT NULL,
-    id_concert VARCHAR(100) NOT NULL
+INSERT INTO artist VALUES ('AR1', 'Ed Sheeran', 'instagram: https://www.instagram.com/edsheeran', 'Iam Singer'),
+('AR2', 'Coldplay', 'instagram: https://www.instagram.com/coldplay', 'Cold like your ice'),
+('AR3', 'One Republic', 'instagram: https://www.instagram.com/One1', 'I have your violin, take it');
+
+INSERT INTO concert VALUES 
+('CR1', ST_GeomFromText('POINT(12 11)', 2323), CURRENT_DATE, 'https://laskdjf.ticker', ST_GeomFromText('POINT(12 11)', 2323), ST_GeomFromText('POINT(12 11)', 2323));
+
+CREATE TABLE song (
+    id VARCHAR(100) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    duration INT NOT NULL
 );
 
-ALTER TABLE artist_concert
-ADD CONSTRAINT fk_artist_concert_artist
-FOREIGN KEY (id_artist) REFERENCES artist (id)
-ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE artist_concert
-ADD CONSTRAINT fk_artist_concert_concert
-FOREIGN KEY (id_concert) REFERENCES concert (id)
-ON DELETE CASCADE ON UPDATE CASCADE;
+INSERT INTO song VALUES 
+('SO1', 'Supermarket Flower', 12232),
+('SO2', 'Shape of Me', 989);
 
-ALTER TABLE artist_concert
-ADD COLUMN concert_name VARCHAR(255) NOT NULL,
-ADD COLUMN artists VARCHAR(255) NOT NULL;
+CREATE TABLE song_artist(
+    id_artist VARCHAR(100) NOT NULL,
+    id_song VARCHAR(100) NOT NULL,
+    artist VARCHAR(100) NOT NULL,
+    song VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_song_artist_artist
+    FOREIGN KEY (id_artist) REFERENCES artist(id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_song_artist_song
+    FOREIGN KEY (id_song) REFERENCES song(id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-DESC artist_concert;
-DESC concert;
+INSERT INTO song_artist VALUES 
+('AR1', 'SO1', (SELECT name FROM artist WHERE artist.id = 'AR1'), (SELECT title FROM song WHERE id = 'SO1')),
+('AR1', 'SO2', (SELECT name FROM artist WHERE artist.id = 'AR1'), (SELECT title FROM song WHERE id = 'SO2'));
 
-INSERT INTO artist VALUES ('AR1', 'Ed Sheeran', 'instagram: https://www.instagram.com/edsheeran', 'Iam Singer');
-INSERT INTO artist VALUES ('AR2', 'Coldplay', 'instagram: https://www.instagram.com/coldplay', 'Cold like your ice');
-INSERT INTO artist VALUES ('AR3', 'One Republic', 'instagram: https://www.instagram.com/One1', 'I have your violin, take it');
+SELECT id_artist, artist, song FROM song_artist;
 
-INSERT INTO concert VALUES ('CR1', ST_GeomFromText('POINT(12 11)', 2323), CURRENT_DATE, 'https://laskdjf.ticker', ST_GeomFromText('POINT(12 11)', 2323), ST_GeomFromText('POINT(12 11)', 2323));
-
-INSERT INTO artist_concert VALUES ('AR1', 'CR1', 'Jakarta Fest', 'lkjasdf');
-
-SELECT * FROM artist_concert;
+CREATE TABLE album (
+    id VARCHAR(100) NOT NULL,
+    imageUrl VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    release DATETIME DEFAULT CURRENT_DATE
+);

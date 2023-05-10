@@ -105,4 +105,9 @@ User }o--o{ Artist : Follow
 User }o--o{ Song : Liked Song
 User }o--o{ Playlist : Follow
 
+' user to podcast, done
+' podcast to podcastgenre, done
+' podcast to episode, done
+' artist to song, done
+' artist to concert, done
 @enduml
