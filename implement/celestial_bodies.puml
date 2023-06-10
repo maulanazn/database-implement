@@ -1,0 +1,30 @@
+@startuml WhiteSmoke
+
+entity "Galaxy" as galaxy {
+    galaxy_id SERIAL <<PK>>
+    name VARCHAR,
+    galaxy_area INT,
+    number_of_star INT,
+    blackhole_located NUMERIC(100, 100),
+    galaxy_constellation_info TEXT,
+    has_blackhole BOOLEAN,
+    has_voidarea BOOLEAN
+}
+
+entity "Star" as star {
+    
+}
+
+entity "Planet" as planet {
+    
+}
+
+entity "Moon" as moon {
+    
+}
+
+entity "More Info" as moreinfo {
+
+}
+
+@enduml
