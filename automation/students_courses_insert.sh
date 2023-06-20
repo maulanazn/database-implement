@@ -2,10 +2,10 @@
 
 # Script to insert data from courses.csv and students.csv into students database
 
-PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+PSQL="psql -X --username=root --dbname=students --no-align --tuples-only -c"
 echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
 
-cat courses.csv | while IFS="," read MAJOR COURSE
+cat csv/courses.csv | while IFS="," read MAJOR COURSE
 do
   if [[ $MAJOR != "major" ]]
   then
@@ -52,7 +52,7 @@ do
   fi
 done
 
-cat students.csv | while IFS="," read FIRST LAST MAJOR GPA
+cat csv/students.csv | while IFS="," read FIRST LAST MAJOR GPA
 do
   if [[ $FIRST != "first_name" ]]
   then
