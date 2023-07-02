@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "order history",
+            "group": "order",
+            "database": "tokopedia_order_history",
+            "username": "maulanazn"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "order history",
+            "database": "maulanazn",
+            "username": "maulanazn"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "order history",
+            "database": "order_history",
+            "username": "maulanazn"
+        }
+    ]
+}
